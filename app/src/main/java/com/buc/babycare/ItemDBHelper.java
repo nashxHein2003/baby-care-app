@@ -20,7 +20,6 @@ public class ItemDBHelper extends SQLiteOpenHelper {
     private static final String column_title = "name";
     private static final String column_quantity = "quantity";
     private static final String column_location = "location";
-    private static final String column_image = "image"; //Image
 
     ItemDBHelper(@Nullable Context context) {
         super(context, db_name, null, db_version);
@@ -42,7 +41,7 @@ public class ItemDBHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + db_table);
     }
 
-    void addItem(String name, int quantity, String location, String imageUri) {
+    void addItem(String name, int quantity, String location) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
 

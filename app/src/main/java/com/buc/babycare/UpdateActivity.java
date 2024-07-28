@@ -95,6 +95,8 @@ public class UpdateActivity extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int which) {
                 ItemDBHelper itemDBHelper = new ItemDBHelper(UpdateActivity.this);
                 itemDBHelper.deleteOneRow(id);
+                Intent intent = new Intent(UpdateActivity.this, ItemActivity.class);
+                startActivity(intent);
                 finish();
             }
         });

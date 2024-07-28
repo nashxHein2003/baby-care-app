@@ -35,7 +35,6 @@ public class ItemActivity extends AppCompatActivity {
     CustomAdapter customAdapter;
 
     private static final int PICK_IMAGE_REQUEST = 1;
-    private Uri imageUri;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,17 +60,6 @@ public class ItemActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(ItemActivity.this));
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
-            imageUri = data.getData();
-            // Handle the selected image
-        } else if (requestCode == 1) {
-            recreate();
-        }
-    }
-
     void storeDataInArrays() {
         Cursor cursor = itemDBHelper.readAllData();
         if (cursor.getCount() == 0) {
@@ -84,7 +72,6 @@ public class ItemActivity extends AppCompatActivity {
                         cursor.getString(1), // name
                         cursor.getString(2), // quantity
                         cursor.getString(3), // location
-                        cursor.getString(4), //image
                         false // default isChecked value
                 ));
             }

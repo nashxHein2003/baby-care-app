@@ -19,8 +19,6 @@ public class AddActivity extends AppCompatActivity {
 
     EditText add_title, add_quantity, add_location;
     Button add_item;
-    ImageView add_image;
-    Uri imageUri;
     private ActivityResultLauncher<Intent> imagePickerLauncher;
 
 
@@ -33,28 +31,14 @@ public class AddActivity extends AppCompatActivity {
         add_quantity = findViewById(R.id.add_quantity);
         add_location = findViewById(R.id.add_location);
         add_item = findViewById(R.id.add_item);
-        add_image = findViewById(R.id.add_image);
 
         ItemDBHelper itemDBHelper = new ItemDBHelper(AddActivity.this);
-
-        imagePickerLauncher = registerForActivityResult(
-                new ActivityResultContracts.StartActivityForResult(),
-                result -> {
-                    if (result.getResultCode() == RESULT_OK && result.getData() != null) {
-                        imageUri = result.getData().getData();
-                        add_image.setImageURI(imageUri);
-                    }
-                }
-        ); //Image
-
-        add_image.setOnClickListener(v -> openFileChooser()); //Image
 
         add_item.setOnClickListener(v -> {
             itemDBHelper.addItem(
                     add_title.getText().toString().trim(),
                     Integer.parseInt(add_quantity.getText().toString().trim()),
-                    add_location.getText().toString().trim(),
-                    imageUri != null ? imageUri.toString() : null // Set image URI
+                    add_location.getText().toString().trim()
             );
         });
     }
