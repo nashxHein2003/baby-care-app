@@ -23,10 +23,7 @@ public class UpdateActivity extends AppCompatActivity {
     EditText add_item, add_quantity, add_location;
     Button update_button, delete_button;
 
-    ImageView add_image;
-    Uri imageUri;
-
-    String id, name, quantity, location, image;
+    String id, name, quantity, location;
 
     ItemDBHelper itemDBHelper;
 
@@ -42,19 +39,9 @@ public class UpdateActivity extends AppCompatActivity {
         add_location = findViewById(R.id.add_location2);
         update_button = findViewById(R.id.update_item);
         delete_button = findViewById(R.id.delete_item);
-        add_image = findViewById(R.id.add_image2);
 
         itemDBHelper = new ItemDBHelper(UpdateActivity.this);
 
-        imagePickerLauncher = registerForActivityResult(
-                new ActivityResultContracts.StartActivityForResult(),
-                result -> {
-                    if (result.getResultCode() == Activity.RESULT_OK && result.getData() != null) {
-                        imageUri = result.getData().getData();
-                        add_image.setImageURI(imageUri);
-                    }
-                }
-        );
         //First Call
         getAndSetIntentDasta();
 
@@ -63,8 +50,6 @@ public class UpdateActivity extends AppCompatActivity {
         assert actionBar != null;
         actionBar.setTitle(name);
 
-        add_image.setOnClickListener(v -> openFileChooser()); //Image
-
         update_button.setOnClickListener(v -> {
             //And only then call
             ItemDBHelper itemDBHelper = new ItemDBHelper(UpdateActivity.this);
@@ -72,10 +57,7 @@ public class UpdateActivity extends AppCompatActivity {
             quantity = add_quantity.getText().toString().trim();
             location = add_location.getText().toString().trim();
 
-            if (imageUri != null) {
-                image = imageUri.toString();
-            }
-            itemDBHelper.updateData(id, name, quantity, location, image);
+            itemDBHelper.updateData(id, name, quantity, location);
         });
 
         delete_button.setOnClickListener(new View.OnClickListener() {
@@ -86,12 +68,6 @@ public class UpdateActivity extends AppCompatActivity {
         });
 
     }
-    private void openFileChooser() {
-        Intent intent = new Intent();
-        intent.setType("image/*");
-        intent.setAction(Intent.ACTION_GET_CONTENT);
-        imagePickerLauncher.launch(intent);
-    }
 
     void getAndSetIntentDasta() {
         if(getIntent().hasExtra("name") && getIntent().hasExtra("quantity") && getIntent().hasExtra("location")) {
@@ -100,16 +76,11 @@ public class UpdateActivity extends AppCompatActivity {
             name = getIntent().getStringExtra("name");
             quantity = getIntent().getStringExtra("quantity");
             location = getIntent().getStringExtra("location");
-            image = getIntent().getStringExtra("image");
 
             //Setting intent
             add_item.setText(name);
             add_quantity.setText(quantity);
             add_location.setText(location);
-            if (image != null) {
-                imageUri = Uri.parse(image);
-                add_image.setImageURI(imageUri);
-            }
         } else {
             Toast.makeText(this, "No Data", Toast.LENGTH_SHORT).show();
         }

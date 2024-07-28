@@ -33,8 +33,7 @@ public class ItemDBHelper extends SQLiteOpenHelper {
                 " (" + column_id + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 column_title + " TEXT, " +
                 column_quantity + " INTEGER, " +
-                column_location + " TEXT, " +
-                column_image + " TEXT); "; //Image
+                column_location + " TEXT);";
         db.execSQL(query);
     }
 
@@ -50,9 +49,8 @@ public class ItemDBHelper extends SQLiteOpenHelper {
         contentValues.put(column_title, name);
         contentValues.put(column_quantity, quantity);
         contentValues.put(column_location, location);
-        contentValues.put(column_image, imageUri); //Image
 
-        System.out.println("Inserting: " + name + ", " + quantity + ", " + location + ", " + imageUri);
+        System.out.println("Inserting: " + name + ", " + quantity + ", " + location);
         try {
             long result = db.insert(db_table, null, contentValues);
             if(result == -1) {
@@ -78,13 +76,12 @@ public class ItemDBHelper extends SQLiteOpenHelper {
         return cursor;
     }
 
-    void  updateData(String row_id, String name, String quantity, String location, String imageUri) {
+    void  updateData(String row_id, String name, String quantity, String location) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
         cv.put(column_title, name);
         cv.put(column_quantity, quantity);
         cv.put(column_location, location);
-        cv.put(column_image, imageUri); //Image
 
         long result = db.update(db_table, cv, "_id=?", new String[]{row_id});
         if(result == -1) {

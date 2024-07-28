@@ -45,13 +45,6 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
         holder.location_txt.setText(item.getLocation());
         holder.item_checkbox.setChecked(item.isChecked());
 
-        //Image
-        if (item.getImageUri() != null) {
-            holder.item_image.setImageURI(Uri.parse(item.getImageUri()));
-        } else {
-            holder.item_image.setImageResource(R.drawable.placeholder_image); // Set a placeholder image if no URI is available
-        }
-
         holder.item_checkbox.setOnCheckedChangeListener((buttonView, isChecked) -> {
             itemList.get(holder.getAdapterPosition()).setChecked(isChecked);
         });
@@ -62,7 +55,6 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
             intent.putExtra("name", item.getName());
             intent.putExtra("quantity", item.getQuantity());
             intent.putExtra("location", item.getLocation());
-            intent.putExtra("imageUri", item.getImageUri());
             activity.startActivityForResult(intent, 1);
         });
     }
@@ -75,7 +67,6 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         TextView item_txt, quantity_txt, location_txt;
         CheckBox item_checkbox;
-        ImageView item_image;
         LinearLayout mainItemLayout;
 
         public MyViewHolder(@NonNull View itemView) {
@@ -84,7 +75,6 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
             quantity_txt = itemView.findViewById(R.id.quantity_txt);
             location_txt = itemView.findViewById(R.id.location_txt);
             item_checkbox = itemView.findViewById(R.id.done_check);
-            item_image = itemView.findViewById(R.id.vector_image);
             mainItemLayout = itemView.findViewById(R.id.mainItemLayout);
         }
     }
