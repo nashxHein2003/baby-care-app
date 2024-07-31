@@ -19,7 +19,7 @@ public class AddActivity extends AppCompatActivity {
 
     EditText add_title, add_quantity, add_location;
     Button add_item;
-    private ActivityResultLauncher<Intent> imagePickerLauncher;
+
 
 
     @Override
@@ -42,13 +42,5 @@ public class AddActivity extends AppCompatActivity {
             );
         });
     }
-
-
-    private void openFileChooser() {
-        Intent intent = new Intent();
-        intent.setType("image/*");
-        intent.setAction(Intent.ACTION_GET_CONTENT);
-        imagePickerLauncher.launch(intent);
-    } //Image
 
 }

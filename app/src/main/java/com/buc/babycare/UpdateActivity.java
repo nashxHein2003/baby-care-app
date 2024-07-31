@@ -27,8 +27,6 @@ public class UpdateActivity extends AppCompatActivity {
 
     ItemDBHelper itemDBHelper;
 
-    private ActivityResultLauncher<Intent> imagePickerLauncher;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
