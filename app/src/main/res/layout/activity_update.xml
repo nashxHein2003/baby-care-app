@@ -29,13 +29,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
                 app:srcCompat="@drawable/baseline_add_black"
-                android:alpha="0.1"
                 />
 
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:paddingHorizontal="15dp"
+                android:layout_marginTop="15dp"
                 android:id="@+id/add_title2"
                 android:background="@drawable/custom_edit_text"
                 android:hint="Enter item"

@@ -3,6 +3,8 @@ package com.buc.babycare;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -45,6 +47,13 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
         holder.location_txt.setText(item.getLocation());
         holder.item_checkbox.setChecked(item.isChecked());
 
+        if (item.getImage() != null) {
+            Bitmap bitmap = BitmapFactory.decodeByteArray(item.getImage(), 0, item.getImage().length);
+            holder.item_image.setImageBitmap(bitmap);
+        } else {
+            holder.item_image.setImageResource(R.drawable.placeholder_image);
+        }
+
         holder.item_checkbox.setOnCheckedChangeListener((buttonView, isChecked) -> {
             itemList.get(holder.getAdapterPosition()).setChecked(isChecked);
         });
@@ -55,6 +64,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
             intent.putExtra("name", item.getName());
             intent.putExtra("quantity", item.getQuantity());
             intent.putExtra("location", item.getLocation());
+            intent.putExtra("image", item.getImage());
             activity.startActivityForResult(intent, 1);
         });
     }
@@ -69,11 +79,13 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
         CheckBox item_checkbox;
         LinearLayout mainItemLayout;
 
+        ImageView item_image;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             item_txt = itemView.findViewById(R.id.item_txt);
             quantity_txt = itemView.findViewById(R.id.quantity_txt);
             location_txt = itemView.findViewById(R.id.location_txt);
+            item_image = itemView.findViewById(R.id.vector_image);
             item_checkbox = itemView.findViewById(R.id.done_check);
             mainItemLayout = itemView.findViewById(R.id.mainItemLayout);
         }

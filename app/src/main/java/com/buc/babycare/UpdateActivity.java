@@ -10,6 +10,8 @@ import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -24,8 +26,11 @@ public class UpdateActivity extends AppCompatActivity {
     Button update_button, delete_button;
 
     String id, name, quantity, location;
+    byte[] imageBytes;
 
     ItemDBHelper itemDBHelper;
+
+    ImageView update_image;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +42,7 @@ public class UpdateActivity extends AppCompatActivity {
         add_location = findViewById(R.id.add_location2);
         update_button = findViewById(R.id.update_item);
         delete_button = findViewById(R.id.delete_item);
+        update_image = findViewById(R.id.add_image2);
 
         itemDBHelper = new ItemDBHelper(UpdateActivity.this);
 
@@ -55,7 +61,7 @@ public class UpdateActivity extends AppCompatActivity {
             quantity = add_quantity.getText().toString().trim();
             location = add_location.getText().toString().trim();
 
-            itemDBHelper.updateData(id, name, quantity, location);
+            itemDBHelper.updateData(id, name, quantity, location, imageBytes);
         });
 
         delete_button.setOnClickListener(new View.OnClickListener() {
@@ -74,11 +80,19 @@ public class UpdateActivity extends AppCompatActivity {
             name = getIntent().getStringExtra("name");
             quantity = getIntent().getStringExtra("quantity");
             location = getIntent().getStringExtra("location");
+            imageBytes = getIntent().getByteArrayExtra("image");
 
             //Setting intent
             add_item.setText(name);
             add_quantity.setText(quantity);
             add_location.setText(location);
+
+            if (imageBytes != null) {
+                Bitmap bitmap = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
+                update_image.setImageBitmap(bitmap);
+            } else {
+                update_image.setImageResource(R.drawable.placeholder_image); // Default placeholder
+            }
         } else {
             Toast.makeText(this, "No Data", Toast.LENGTH_SHORT).show();
         }

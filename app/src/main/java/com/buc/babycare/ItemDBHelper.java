@@ -20,6 +20,7 @@ public class ItemDBHelper extends SQLiteOpenHelper {
     private static final String column_title = "name";
     private static final String column_quantity = "quantity";
     private static final String column_location = "location";
+    private static final String column_image = "image";
 
     ItemDBHelper(@Nullable Context context) {
         super(context, db_name, null, db_version);
@@ -32,7 +33,8 @@ public class ItemDBHelper extends SQLiteOpenHelper {
                 " (" + column_id + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 column_title + " TEXT, " +
                 column_quantity + " INTEGER, " +
-                column_location + " TEXT);";
+                column_location + " TEXT, " +
+                column_image + " BLOB);";
         db.execSQL(query);
     }
 
@@ -41,13 +43,14 @@ public class ItemDBHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + db_table);
     }
 
-    void addItem(String name, int quantity, String location) {
+    void addItem(String name, int quantity, String location, byte[] image) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
 
         contentValues.put(column_title, name);
         contentValues.put(column_quantity, quantity);
         contentValues.put(column_location, location);
+        contentValues.put(column_image, image);
 
         System.out.println("Inserting: " + name + ", " + quantity + ", " + location);
         try {
@@ -75,12 +78,13 @@ public class ItemDBHelper extends SQLiteOpenHelper {
         return cursor;
     }
 
-    void  updateData(String row_id, String name, String quantity, String location) {
+    void  updateData(String row_id, String name, String quantity, String location, byte[] image) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
         cv.put(column_title, name);
         cv.put(column_quantity, quantity);
         cv.put(column_location, location);
+        cv.put(column_image, image);
 
         long result = db.update(db_table, cv, "_id=?", new String[]{row_id});
         if(result == -1) {

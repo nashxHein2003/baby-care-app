@@ -67,12 +67,14 @@ public class ItemActivity extends AppCompatActivity {
             empty_data_txt.setVisibility(View.VISIBLE);
         } else {
             while (cursor.moveToNext()) {
+                byte[] image = cursor.getBlob(4);
                 itemList.add(new Model(
                         cursor.getString(0), // id
                         cursor.getString(1), // name
                         cursor.getString(2), // quantity
                         cursor.getString(3), // location
-                        false // default isChecked value
+                        false, // default isChecked value
+                        image
                 ));
             }
             empty_image.setVisibility(View.GONE);
