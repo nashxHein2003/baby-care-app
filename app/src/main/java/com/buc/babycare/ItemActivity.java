@@ -74,7 +74,7 @@ public class ItemActivity extends AppCompatActivity {
                         cursor.getString(2), // quantity
                         cursor.getString(3), // location
                         false, // default isChecked value
-                        image
+                        image //image
                 ));
             }
             empty_image.setVisibility(View.GONE);

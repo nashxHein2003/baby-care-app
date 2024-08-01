@@ -22,17 +22,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());  // Use the root of the binding
+        setContentView(binding.getRoot());
 
         dbHelper = new DBHelper(this);
-
-        // No need to find views by ID, you can directly access them using binding
-        binding.registerButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(MainActivity.this, RegisterActivity.class);
-                startActivity(i);
-            }
+        binding.registerButton.setOnClickListener(v -> {
+            Intent i = new Intent(MainActivity.this, RegisterActivity.class);
+            startActivity(i);
         });
 
         binding.loginButton.setOnClickListener(new View.OnClickListener() {
