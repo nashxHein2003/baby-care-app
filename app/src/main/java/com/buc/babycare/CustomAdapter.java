@@ -9,10 +9,12 @@ import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -67,7 +69,26 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
             intent.putExtra("image", item.getImage());
             activity.startActivityForResult(intent, 1);
         });
+
+        holder.send_sms_button.setOnClickListener(v -> {
+            String message = "Item: " + item.getName() + "\nQuantity: " + item.getQuantity() + "\nLocation: " + item.getLocation();
+            sendSms(message);
+        });
     }
+
+    private void sendSms(String message) {
+        Intent smsIntent = new Intent(Intent.ACTION_SENDTO);
+        smsIntent.setData(Uri.parse("smsto:"));
+        smsIntent.putExtra("sms_body", message);
+        context.startActivity(smsIntent);
+
+//        if (smsIntent.resolveActivity(context.getPackageManager()) != null) {
+//            context.startActivity(smsIntent);
+//        } else {
+//            Toast.makeText(context, "No SMS app found", Toast.LENGTH_SHORT).show();
+//        }
+    }
+
 
     @Override
     public int getItemCount() {
@@ -80,6 +101,8 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
         LinearLayout mainItemLayout;
 
         ImageView item_image;
+
+        Button send_sms_button;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             item_txt = itemView.findViewById(R.id.item_txt);
@@ -88,6 +111,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
             item_image = itemView.findViewById(R.id.vector_image);
             item_checkbox = itemView.findViewById(R.id.done_check);
             mainItemLayout = itemView.findViewById(R.id.mainItemLayout);
+            send_sms_button = itemView.findViewById(R.id.sms_button);
         }
     }
 
