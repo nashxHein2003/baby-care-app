@@ -7,7 +7,7 @@
     android:background="@color/blueBg"
     android:orientation="vertical"
     android:gravity="center"
-    tools:context=".AddActivity">
+    tools:context=".views.AddActivity">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -29,7 +29,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
                 app:srcCompat="@drawable/baseline_add_black"
-                android:contentDescription="Selected Image"
+                android:contentDescription="@string/selectedImage"
                 android:clickable="true"
                 android:focusable="true"
                 />
@@ -42,7 +42,7 @@
                 android:layout_marginTop="15dp"
                 android:id="@+id/add_title"
                 android:background="@drawable/custom_edit_text"
-                android:hint="Enter item"
+                android:hint="@string/enterItem"
                 android:textSize="14sp"
                 android:textColor="@color/gray"
                 android:letterSpacing="0.15"/>
@@ -54,7 +54,7 @@
                 android:layout_marginTop="15dp"
                 android:id="@+id/add_quantity"
                 android:background="@drawable/custom_edit_text"
-                android:hint="Enter quantity"
+                android:hint="@string/enterQuantity"
                 android:textSize="14sp"
                 android:textColor="@color/gray"
                 android:letterSpacing="0.15"/>
@@ -66,16 +66,16 @@
                 android:layout_marginTop="15dp"
                 android:id="@+id/add_location"
                 android:background="@drawable/custom_edit_text"
-                android:hint="Enter location"
+                android:hint="@string/enterLocation"
                 android:textSize="14sp"
                 android:textColor="@color/gray"
-                android:letterSpacing="0.15"/>
+                android:letterSpacing="0.15" />
 
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:id="@+id/add_item"
-                android:text="Add"
+                android:text="@string/add"
                 android:textSize="15sp"
                 android:layout_marginTop="30dp"
                 android:background="@drawable/rounded_button"

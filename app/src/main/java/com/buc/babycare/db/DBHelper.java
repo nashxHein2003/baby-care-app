@@ -1,4 +1,4 @@
-package com.buc.babycare;
+package com.buc.babycare.db;
 
 import android.content.ContentValues;
 import android.content.Context;

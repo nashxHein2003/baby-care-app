@@ -1,17 +1,14 @@
-package com.buc.babycare;
+package com.buc.babycare.views;
 
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.buc.babycare.databinding.ActivityMainBinding;
+import com.buc.babycare.db.DBHelper;
 
 public class MainActivity extends AppCompatActivity {
 

@@ -1,3 +1,23 @@
 <resources>
     <string name="app_name">BabyCare</string>
+    <string name="item_name">Item Name</string>
+    <string name="zero">0</string>
+    <string name="location">Location</string>
+    <string name="sendSMS">Send via SMS</string>
+    <string name="selectedImage">Selected Image</string>
+    <string name="enterItem">Enter item</string>
+    <string name="enterQuantity">Enter quantity</string>
+    <string name="enterLocation">Enter location</string>
+    <string name="add">Add</string>
+    <string name="noData">No Data</string>
+    <string name="login">Login</string>
+    <string name="enterUsername">Enter username</string>
+    <string name="enterPassword">Enter Password</string>
+    <string name="enterEmail">Enter Email</string>
+    <string name="confirmPassword">Confirm Password</string>
+
+    <string name="or">Or</string>
+    <string name="register">Register</string>
+    <string name="update">Update</string>
+    <string name="delete">Delete</string>
 </resources>

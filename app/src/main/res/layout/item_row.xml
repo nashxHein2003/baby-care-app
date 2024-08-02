@@ -21,7 +21,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:text="Item Name"
+                android:text="@string/item_name"
                 android:textSize="24sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toEndOf="@id/vector_image"
@@ -31,7 +31,7 @@
                 android:id="@+id/quantity_txt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="0"
+                android:text="@string/zero"
                 android:textSize="15sp"
                 app:layout_constraintStart_toStartOf="@id/item_txt"
                 app:layout_constraintTop_toBottomOf="@id/item_txt" />
@@ -40,7 +40,7 @@
                 android:id="@+id/location_txt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Location"
+                android:text="@string/location"
                 android:textSize="15sp"
                 app:layout_constraintStart_toStartOf="@id/quantity_txt"
                 app:layout_constraintTop_toBottomOf="@id/quantity_txt" />
@@ -54,7 +54,7 @@
                 android:background="@drawable/rounded_button"
                 android:paddingHorizontal="15dp"
                 android:paddingVertical="5dp"
-                android:text="Send via SMS"
+                android:text="@string/sendSMS"
                 app:layout_constraintEnd_toEndOf="@id/done_check"
                 app:layout_constraintTop_toBottomOf="@id/done_check" />
 

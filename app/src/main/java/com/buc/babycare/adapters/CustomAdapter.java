@@ -1,4 +1,4 @@
-package com.buc.babycare;
+package com.buc.babycare.adapters;
 
 import android.app.Activity;
 import android.content.Context;
@@ -14,10 +14,13 @@ import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.buc.babycare.models.Model;
+import com.buc.babycare.R;
+import com.buc.babycare.views.UpdateActivity;
 
 import java.util.ArrayList;
 
@@ -27,7 +30,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
     private ArrayList<Model> itemList;
     private Activity activity;
 
-    CustomAdapter(Activity activity, Context context, ArrayList<Model> itemList) {
+    public CustomAdapter(Activity activity, Context context, ArrayList<Model> itemList) {
         this.activity = activity;
         this.context = context;
         this.itemList = itemList;

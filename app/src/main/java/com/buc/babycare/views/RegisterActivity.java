@@ -1,13 +1,13 @@
-package com.buc.babycare;
+package com.buc.babycare.views;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Toast;
 
 import com.buc.babycare.databinding.ActivityRegisterBinding;
+import com.buc.babycare.db.DBHelper;
 
 public class RegisterActivity extends AppCompatActivity {
 

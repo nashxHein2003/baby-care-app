@@ -1,10 +1,12 @@
-package com.buc.babycare;
+package com.buc.babycare.views;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+
+import com.buc.babycare.R;
 
 public class SplashActivity extends AppCompatActivity {
 

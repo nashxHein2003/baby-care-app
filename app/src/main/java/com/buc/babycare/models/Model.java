@@ -1,4 +1,4 @@
-package com.buc.babycare;
+package com.buc.babycare.models;
 
 public class Model {
     private String id;

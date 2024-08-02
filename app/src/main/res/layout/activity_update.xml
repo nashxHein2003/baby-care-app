@@ -7,7 +7,7 @@
     android:background="@color/blueBg"
     android:orientation="vertical"
     android:gravity="center"
-    tools:context=".UpdateActivity">
+    tools:context=".views.UpdateActivity">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -38,7 +38,7 @@
                 android:layout_marginTop="15dp"
                 android:id="@+id/add_title2"
                 android:background="@drawable/custom_edit_text"
-                android:hint="Enter item"
+                android:hint="@string/enterItem"
                 android:textSize="14sp"
                 android:textColor="@color/gray"
                 android:letterSpacing="0.15"/>
@@ -50,7 +50,7 @@
                 android:layout_marginTop="15dp"
                 android:id="@+id/add_quantity2"
                 android:background="@drawable/custom_edit_text"
-                android:hint="Enter quantity"
+                android:hint="@string/enterQuantity"
                 android:textSize="14sp"
                 android:textColor="@color/gray"
                 android:letterSpacing="0.15"/>
@@ -62,7 +62,7 @@
                 android:layout_marginTop="15dp"
                 android:id="@+id/add_location2"
                 android:background="@drawable/custom_edit_text"
-                android:hint="Enter location"
+                android:hint="@string/enterLocation"
                 android:textSize="14sp"
                 android:textColor="@color/gray"
                 android:letterSpacing="0.15"/>
@@ -71,7 +71,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:id="@+id/update_item"
-                android:text="Update"
+                android:text="@string/update"
                 android:textSize="15sp"
                 android:layout_marginTop="30dp"
                 android:background="@drawable/rounded_button"
@@ -81,7 +81,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:id="@+id/delete_item"
-                android:text="Delete"
+                android:text="@string/delete"
                 android:textSize="15sp"
                 android:layout_marginTop="10dp"
                 android:backgroundTint="@color/red"
