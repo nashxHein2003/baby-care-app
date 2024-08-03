@@ -1,20 +1,21 @@
-package com.buc.babycare;
+package com.buc.babycare.models;
 
 public class Model {
     private String id;
     private String name;
     private String quantity;
     private String location;
-    private String imageUri;
+
+    private byte[] image;
     private boolean isChecked;
 
-    public Model(String id, String name, String quantity, String location, String imageUri, boolean isChecked) {
+    public Model(String id, String name, String quantity, String location, boolean isChecked, byte[] image) {
         this.id = id;
         this.name = name;
         this.quantity = quantity;
         this.location = location;
-        this.imageUri = imageUri;
         this.isChecked = isChecked;
+        this.image = image;
     }
 
     public String getId() {
@@ -33,19 +34,19 @@ public class Model {
         return location;
     }
 
-    public String getImageUri() {
-        return imageUri;
-    }
-
-    public void setImageUri(String imageUri) {
-        this.imageUri = imageUri;
-    }
-
     public boolean isChecked() {
         return isChecked;
     }
 
     public void setChecked(boolean checked) {
         isChecked = checked;
+    }
+
+    public byte[] getImage() {
+        return image;
+    }
+
+    public void setImage(byte[] image) {
+        this.image = image;
     }
 }

@@ -1,12 +1,15 @@
-package com.buc.babycare;
+package com.buc.babycare.adapters;
 
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -14,6 +17,10 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.buc.babycare.models.Model;
+import com.buc.babycare.R;
+import com.buc.babycare.views.UpdateActivity;
 
 import java.util.ArrayList;
 
@@ -23,7 +30,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
     private ArrayList<Model> itemList;
     private Activity activity;
 
-    CustomAdapter(Activity activity, Context context, ArrayList<Model> itemList) {
+    public CustomAdapter(Activity activity, Context context, ArrayList<Model> itemList) {
         this.activity = activity;
         this.context = context;
         this.itemList = itemList;
@@ -45,11 +52,11 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
         holder.location_txt.setText(item.getLocation());
         holder.item_checkbox.setChecked(item.isChecked());
 
-        //Image
-        if (item.getImageUri() != null) {
-            holder.item_image.setImageURI(Uri.parse(item.getImageUri()));
+        if (item.getImage() != null) {
+            Bitmap bitmap = BitmapFactory.decodeByteArray(item.getImage(), 0, item.getImage().length);
+            holder.item_image.setImageBitmap(bitmap);
         } else {
-            holder.item_image.setImageResource(R.drawable.placeholder_image); // Set a placeholder image if no URI is available
+            holder.item_image.setImageResource(R.drawable.placeholder_image);
         }
 
         holder.item_checkbox.setOnCheckedChangeListener((buttonView, isChecked) -> {
@@ -62,10 +69,29 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
             intent.putExtra("name", item.getName());
             intent.putExtra("quantity", item.getQuantity());
             intent.putExtra("location", item.getLocation());
-            intent.putExtra("imageUri", item.getImageUri());
+            intent.putExtra("image", item.getImage());
             activity.startActivityForResult(intent, 1);
         });
+
+        holder.send_sms_button.setOnClickListener(v -> {
+            String message = "Item: " + item.getName() + "\nQuantity: " + item.getQuantity() + "\nLocation: " + item.getLocation();
+            sendSms(message);
+        });
     }
+
+    private void sendSms(String message) {
+        Intent smsIntent = new Intent(Intent.ACTION_SENDTO);
+        smsIntent.setData(Uri.parse("smsto:"));
+        smsIntent.putExtra("sms_body", message);
+        context.startActivity(smsIntent);
+
+//        if (smsIntent.resolveActivity(context.getPackageManager()) != null) {
+//            context.startActivity(smsIntent);
+//        } else {
+//            Toast.makeText(context, "No SMS app found", Toast.LENGTH_SHORT).show();
+//        }
+    }
+
 
     @Override
     public int getItemCount() {
@@ -75,17 +101,20 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         TextView item_txt, quantity_txt, location_txt;
         CheckBox item_checkbox;
-        ImageView item_image;
         LinearLayout mainItemLayout;
 
+        ImageView item_image;
+
+        Button send_sms_button;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             item_txt = itemView.findViewById(R.id.item_txt);
             quantity_txt = itemView.findViewById(R.id.quantity_txt);
             location_txt = itemView.findViewById(R.id.location_txt);
-            item_checkbox = itemView.findViewById(R.id.done_check);
             item_image = itemView.findViewById(R.id.vector_image);
+            item_checkbox = itemView.findViewById(R.id.done_check);
             mainItemLayout = itemView.findViewById(R.id.mainItemLayout);
+            send_sms_button = itemView.findViewById(R.id.sms_button);
         }
     }
 

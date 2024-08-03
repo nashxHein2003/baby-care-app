@@ -1,17 +1,14 @@
-package com.buc.babycare;
+package com.buc.babycare.views;
 
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.buc.babycare.databinding.ActivityMainBinding;
+import com.buc.babycare.db.DBHelper;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -22,17 +19,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());  // Use the root of the binding
+        setContentView(binding.getRoot());
 
         dbHelper = new DBHelper(this);
-
-        // No need to find views by ID, you can directly access them using binding
-        binding.registerButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(MainActivity.this, RegisterActivity.class);
-                startActivity(i);
-            }
+        binding.registerButton.setOnClickListener(v -> {
+            Intent i = new Intent(MainActivity.this, RegisterActivity.class);
+            startActivity(i);
         });
 
         binding.loginButton.setOnClickListener(new View.OnClickListener() {

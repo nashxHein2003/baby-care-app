@@ -1,4 +1,4 @@
-package com.buc.babycare;
+package com.buc.babycare.db;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -15,7 +15,7 @@ public class DBHelper extends SQLiteOpenHelper {
     private static int dbVersion = 1;
 
     private static String ID = "id";
-    private static String username = "username";
+    private static final String username = "username";
     private static String password = "password";
     public DBHelper(@Nullable Context context) {
         super(context, dbName, null, dbVersion);

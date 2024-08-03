@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:gravity="center"
     android:background="@drawable/baby_sitter_scren"
-    tools:context=".RegisterActivity">
+    tools:context=".views.RegisterActivity">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -27,7 +27,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Register"
+                android:text="@string/register"
                 android:id="@+id/loginText"
                 android:textSize="36sp"
                 android:textAlignment="center"
@@ -41,7 +41,7 @@
                 android:layout_marginTop="40dp"
                 android:id="@+id/email_log"
                 android:background="@drawable/custom_edit_text"
-                android:hint="Enter Email"
+                android:hint="@string/enterEmail"
                 android:textSize="14sp"
                 android:textColor="@color/gray"
                 android:letterSpacing="0.15"/>
@@ -53,7 +53,7 @@
                 android:layout_marginTop="10dp"
                 android:id="@+id/username_log"
                 android:background="@drawable/custom_edit_text"
-                android:hint="Enter username"
+                android:hint="@string/enterUsername"
                 android:textSize="14sp"
                 android:textColor="@color/gray"
                 android:letterSpacing="0.15"/>
@@ -65,7 +65,7 @@
                 android:layout_marginTop="10dp"
                 android:id="@+id/password_log"
                 android:background="@drawable/custom_edit_text"
-                android:hint="Enter Password"
+                android:hint="@string/enterPassword"
                 android:textSize="14sp"
                 android:textColor="@color/gray"
                 android:letterSpacing="0.15"/>
@@ -77,7 +77,7 @@
                 android:layout_marginTop="10dp"
                 android:id="@+id/confirm_password_log"
                 android:background="@drawable/custom_edit_text"
-                android:hint="Confirm Password"
+                android:hint="@string/confirmPassword"
                 android:textSize="14sp"
                 android:textColor="@color/gray"
                 android:letterSpacing="0.15"/>
@@ -92,7 +92,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:id="@+id/register_button"
-                android:text="Register"
+                android:text="@string/register"
                 android:textSize="15sp"
                 android:layout_marginTop="30dp"
                 android:backgroundTint="@color/colorSecondary"
@@ -103,13 +103,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="5dp"
                 android:textAlignment="center"
-                android:text="Or" />
+                android:text="@string/or" />
 
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:id="@+id/login_button"
-                android:text="Login"
+                android:text="@string/login"
                 android:textSize="15sp"
                 android:backgroundTint="@color/colorSecondary"
                 app:cornerRadius = "20dp" />

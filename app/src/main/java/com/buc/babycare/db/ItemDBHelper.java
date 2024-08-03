@@ -1,4 +1,4 @@
-package com.buc.babycare;
+package com.buc.babycare.db;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -20,9 +20,9 @@ public class ItemDBHelper extends SQLiteOpenHelper {
     private static final String column_title = "name";
     private static final String column_quantity = "quantity";
     private static final String column_location = "location";
-    private static final String column_image = "image"; //Image
+    private static final String column_image = "image";
 
-    ItemDBHelper(@Nullable Context context) {
+    public ItemDBHelper(@Nullable Context context) {
         super(context, db_name, null, db_version);
         this.context =context;
     }
@@ -34,7 +34,7 @@ public class ItemDBHelper extends SQLiteOpenHelper {
                 column_title + " TEXT, " +
                 column_quantity + " INTEGER, " +
                 column_location + " TEXT, " +
-                column_image + " TEXT); "; //Image
+                column_image + " BLOB);";
         db.execSQL(query);
     }
 
@@ -43,16 +43,16 @@ public class ItemDBHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + db_table);
     }
 
-    void addItem(String name, int quantity, String location, String imageUri) {
+    public void addItem(String name, int quantity, String location, byte[] image) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
 
         contentValues.put(column_title, name);
         contentValues.put(column_quantity, quantity);
         contentValues.put(column_location, location);
-        contentValues.put(column_image, imageUri); //Image
+        contentValues.put(column_image, image);
 
-        System.out.println("Inserting: " + name + ", " + quantity + ", " + location + ", " + imageUri);
+        System.out.println("Inserting: " + name + ", " + quantity + ", " + location);
         try {
             long result = db.insert(db_table, null, contentValues);
             if(result == -1) {
@@ -67,7 +67,7 @@ public class ItemDBHelper extends SQLiteOpenHelper {
     }
 
 
-    Cursor readAllData() {
+    public Cursor readAllData() {
         String query = "SELECT * FROM " + db_table;
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -78,13 +78,13 @@ public class ItemDBHelper extends SQLiteOpenHelper {
         return cursor;
     }
 
-    void  updateData(String row_id, String name, String quantity, String location, String imageUri) {
+    public void  updateData(String row_id, String name, String quantity, String location, byte[] image) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
         cv.put(column_title, name);
         cv.put(column_quantity, quantity);
         cv.put(column_location, location);
-        cv.put(column_image, imageUri); //Image
+        cv.put(column_image, image);
 
         long result = db.update(db_table, cv, "_id=?", new String[]{row_id});
         if(result == -1) {
@@ -94,7 +94,7 @@ public class ItemDBHelper extends SQLiteOpenHelper {
         }
     }
 
-    void deleteOneRow(String row_id) {
+    public void deleteOneRow(String row_id) {
         SQLiteDatabase db = this.getWritableDatabase();
         long result =  db.delete(db_table, "_id=?", new String[]{row_id});
         if(result == -1) {
@@ -104,7 +104,7 @@ public class ItemDBHelper extends SQLiteOpenHelper {
         }
     }
 
-    void deleteAllData() {
+    public void deleteAllData() {
         SQLiteDatabase db = this.getWritableDatabase();
         db.execSQL("DELETE FROM " + db_table);
     }
